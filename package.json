@@ -1,0 +1,19 @@
+{
+  "name": "billett-cash-server",
+  "version": "1.0.0",
+  "description": "Server side for ordering tickets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo no tests yet",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "bitcoin-cash",
+    "slp"
+  ],
+  "author": "Jonny Heggheim <hegjon@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "slp-sdk": "^4.2.0"
+  }
+}
