@@ -1,4 +1,11 @@
 {
   "restURL": "https://rest.bitcoin.com/v2/",
-  "lang": "english"
+  "lang": "english",
+  "ticket": {
+    "name": "Bitcoin cash test conference",
+    "symbol": null,
+    "documentUri": "billett.cash",
+    "documentHash": null,
+    "initialTokenQty": 1000
+  }
 }

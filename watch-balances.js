@@ -1,21 +1,12 @@
 const SLPSDK = require("slp-sdk");
+const wallletFile = require("./wallet-file");
 const config = require("./config");
 
 const SLP = new SLPSDK(config);
 
-// Open the wallet generated with create-wallet.
-let walletInfo
-try {
-  walletInfo = require(`./wallet.json`)
-} catch (err) {
-  console.log(
-    `Could not open wallet.json. Generate a wallet with create-wallet first.`
-  )
-  process.exit(0)
-}
-
 async function getBalance() {
   try {
+    const walletInfo = walletFile.read();
     const mnemonic = walletInfo.mnemonic
 
     // root seed buffer
