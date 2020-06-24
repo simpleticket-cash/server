@@ -1,5 +1,7 @@
 "use strict";
 
+require('dotenv').config();
+
 const wallet = "wallet.json";
 const createWallet = require("./create-wallet");
 const printWalletInfo = require("./print-wallet-info");

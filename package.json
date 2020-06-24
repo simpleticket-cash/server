@@ -21,10 +21,12 @@
   },
   "dependencies": {
     "bitbox-sdk": "^8.11.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs-extra": "^8.1.0",
     "p-wait-for": "^3.1.0",
     "qrcode-terminal": "^0.12.0",
-    "slp-sdk": "^4.15.0"
+    "slp-sdk": "^4.15.0",
+    "slpjs": ">=0.27.2"
   }
 }
