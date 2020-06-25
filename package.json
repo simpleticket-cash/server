@@ -1,6 +1,6 @@
 {
-  "name": "billett-cash-server",
-  "version": "1.0.0",
+  "name": "simpleticket-cash-server",
+  "version": "0.0.1",
   "description": "Server side for ordering tickets",
   "main": "index.js",
   "scripts": {
