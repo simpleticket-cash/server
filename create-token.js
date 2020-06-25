@@ -7,7 +7,7 @@ const { restURL, ticket } = require("./config");
 
 const SLP = new SLPSDK({ restURL });
 
-const documentUri = "https://simpleticket.org/v1";
+const documentUri = "https://simpleticket.cash/v1";
 
 async function createToken(wallet) {
   try {
