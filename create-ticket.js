@@ -9,7 +9,7 @@ const SLP = new SLPSDK({ restURL });
 
 const documentUri = "https://simpleticket.cash/v1";
 
-async function createToken(wallet) {
+async function createTicket(wallet, ticket) {
   try {
     const mnemonic = wallet.mnemonic
 
@@ -46,7 +46,7 @@ async function createToken(wallet) {
       initialTokenQty: ticket.initialTokenQty
     }
 
-    const genesisTxId = "2104d28f07c7f4008f69b28991ff1fdee7202c743ad9d124c69d485965f33e6a"; // await SLP.TokenType1.create(createConfig)
+    const genesisTxId = await SLP.TokenType1.create(createConfig);
     wallet.genesisTxId = genesisTxId;
     console.log(`genesisTxID: ${genesisTxId}`)
 
@@ -55,10 +55,10 @@ async function createToken(wallet) {
 
     return wallet;
   } catch (err) {
-    console.error(`Error in createToken: `, err)
+    console.error(`Error in createTicket: `, err)
     console.log(`Error message: ${err.message}`)
     throw err
   }
 }
 
-module.exports = createToken;
+module.exports = createTicket;
