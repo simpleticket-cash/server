@@ -3,11 +3,11 @@
 const SLPSDK = require("slp-sdk");
 const qrcode = require('qrcode-terminal');
 
-const walletFile = require("./wallet-file");
-
 const { restURL, ticket } = require("./config");
 
 const SLP = new SLPSDK({ restURL });
+
+const documentUri = "https://simpleticket.org/v1";
 
 async function createToken(wallet) {
   try {
@@ -41,7 +41,7 @@ async function createToken(wallet) {
       bchChangeReceiverAddress,
       decimals: 0,
       name: ticket.name,
-      documentUri: ticket.documentUri,
+      documentUri: documentUri,
       documentHash: ticket.documentHash,
       initialTokenQty: ticket.initialTokenQty
     }
@@ -53,7 +53,7 @@ async function createToken(wallet) {
     console.log(`View this transaction on the block explorer:`)
     console.log(`https://explorer.bitcoin.com/bch/tx/${genesisTxId}`)
 
-    return walletFile.write(wallet);
+    return wallet;
   } catch (err) {
     console.error(`Error in createToken: `, err)
     console.log(`Error message: ${err.message}`)

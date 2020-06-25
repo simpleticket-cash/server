@@ -1,7 +1,6 @@
 "use strict";
 
 const SLPSDK = require("slp-sdk");
-const walletFile = require("./wallet-file");
 const sendToken = require("./send-token");
 
 const { restURL, lang } = require("./config");
@@ -11,8 +10,11 @@ const SLP = new SLPSDK({ restURL });
 const map = {};
 var d = 1;
 
-function register(slpAddress) {
-  const wallet = walletFile.read();
+function register(slpAddress, wallet) {
+  if(!wallet) {
+    throw new Error("Missing argument wallet!");
+  }
+
   const mnemonic = wallet.mnemonic;
 
   const rootSeed = SLP.Mnemonic.toSeed(mnemonic);
@@ -50,7 +52,7 @@ async function checkBalances() {
     if(confirmed + unconfirmed  >= 1000) {
       const slpAddress = map[cashAddress];
       console.log("Got payment!! '%s' -> '%s'", cashAddress, slpAddress)
-      await sendToken(slpAddress);
+      await sendToken(slpAddress, wallet);
       sent.push(cashAddress);
     }
   }

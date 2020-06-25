@@ -1,29 +1,18 @@
 const SLPSDK = require("slp-sdk");
-const walletFile = require("./wallet-file");
 
-const { restURL, lang } = require("./config");
+const { restURL } = require("./config");
 
 const SLP = new SLPSDK({ restURL });
 
-async function createWallet(file) {
-  const walletExists = await walletFile.exists;
-
-  if(walletExists) {
-    console.log("Wallet is already created!")
-    return walletFile.read();
-  }
-
+async function createWallet(mnemonic) {
   return Promise.resolve()
-    .then(generate)
-    .then(writeFile.write);
+    .then(generate);
 
   function generate() {
     const wallet = {}
 
-    const mnemonic = SLP.Mnemonic.generate(128, SLP.Mnemonic.wordLists()[lang])
-
     console.log("BIP44 $BCH Wallet")
-    console.log(`128 bit ${lang} BIP39 Mnemonic: `, mnemonic)
+    console.log(`Mnemonic: `, mnemonic)
     wallet.mnemonic = mnemonic
 
     const rootSeed = SLP.Mnemonic.toSeed(mnemonic)

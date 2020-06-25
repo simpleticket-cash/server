@@ -1,14 +1,15 @@
 const SLPSDK = require("slp-sdk");
-const walletFile = require("./wallet-file");
 const config = require("./config");
 
 const SLP = new SLPSDK(config);
 
+async function sendToken(tokenReceiverAddress, wallet) {
+  if(!wallet) {
+    throw new Error("Missing argument wallet!");
+  }
 
-
-async function sendToken(tokenReceiverAddress) {
   try {
-    const wallet = await walletFile.read();
+
     const mnemonic = wallet.mnemonic
 
     const rootSeed = SLP.Mnemonic.toSeed(mnemonic)

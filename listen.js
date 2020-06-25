@@ -5,7 +5,7 @@ const slpRegister = require('./slp-register');
 
 const { ticket } = require("./config");
 
-function listen() {
+function listen(wallet) {
   const app = express();
   app.use(express.json());
   const port = 3000
