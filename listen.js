@@ -10,7 +10,6 @@ const { ticket } = require("./config");
 function listen(wallet) {
   const app = express();
   app.use(express.json());
-  app.set('views', `${__dirname}/views`);
   app.set('view engine', 'mustache');
   app.engine('mustache', mustacheExpress());
 
@@ -38,6 +37,5 @@ function listen(wallet) {
   console.log("LISTEN");
   return app;
 }
-
 
 module.exports = listen;
