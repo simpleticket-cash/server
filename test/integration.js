@@ -1,13 +1,13 @@
 const mnemonic = require('../mnemonic');
 const createWallet = require('../create-wallet');
-const waitForFunds = require('../wait-for-funds');
+const waitForFunds = require('./wait-for-funds');
 
 describe('Integrating with the testnet', function() {
   let wallet;
 
   it('should generate random mnemonic and wallet', function() {
     this.slow(500);
-    
+
     const m = mnemonic();
     wallet = createWallet(m);
   });

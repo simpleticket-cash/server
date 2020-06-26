@@ -2,7 +2,7 @@ const SLPSDK = require("slp-sdk");
 const qrcode = require('qrcode-terminal');
 const pWaitFor = require('p-wait-for');
 
-const { restURL } = require("./config");
+const { restURL } = require("../config");
 
 const SLP = new SLPSDK({ restURL });
 
