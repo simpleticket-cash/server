@@ -6,9 +6,6 @@ const mustacheExpress = require('mustache-express');
 const slp = require('./slp');
 const slpRegister = require('./slp-register');
 
-const { ticket } = require("./config");
-
-
 function listen(wallet) {
   const app = express();
   app.use(express.json());
