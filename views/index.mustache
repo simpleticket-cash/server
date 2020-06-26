@@ -3,7 +3,10 @@
     <script type="text/javascript" src="https://developer.bitcoin.com/badger/badgerButton-1.0.1.js"></script>
 </head>
 <body>
-  <p>Buy ticket to {{ticket.name}}</p>
+  <p>Buy ticket to buy</p>
+  {{#tickets}}
+    <b>{{tokenId}} ({{balance}})</b>
+  {{/tickets}}
   <p>Receive address <div id="receive"></div></p>
   <p>Send Bitcoin cash to address <div id="sendTo">...</div></p>
 

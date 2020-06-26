@@ -3,9 +3,11 @@
 const express = require('express')
 const mustacheExpress = require('mustache-express');
 
+const slp = require('./slp');
 const slpRegister = require('./slp-register');
 
 const { ticket } = require("./config");
+
 
 function listen(wallet) {
   const app = express();
@@ -16,7 +18,13 @@ function listen(wallet) {
   const port = process.env.PORT || 3000;
 
   app.get('/', (req, res) => {
-    res.render('index', { ticket: ticket })
+    slp.list(wallet)
+      .then(render);
+
+      function render(tickets) {
+        console.log("Tickets", tickets);
+        res.render('index', { tickets });
+      }
   });
 
   app.get('/admin', (req, res) => {
@@ -24,7 +32,8 @@ function listen(wallet) {
   });
 
   app.get('/cashid/request', (req, res) => {
-    res.json({"request": "cashid:apud.serveousercontent.com/cashid/auth?x=123"});
+    const request = `cashid:${req.hostname}/cashid/auth?x=123`;
+    res.json({ request });
   });
 
   app.post('/cashid/auth', (req, res) => {
