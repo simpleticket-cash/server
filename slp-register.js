@@ -3,7 +3,7 @@
 const SLPSDK = require("slp-sdk");
 const sendToken = require("./send-token");
 
-const { restURL, lang } = require("./config");
+const { restURL } = require("./config");
 
 const SLP = new SLPSDK({ restURL });
 

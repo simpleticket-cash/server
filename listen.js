@@ -45,7 +45,7 @@ function listen(wallet) {
     res.send(cashAddress);
   });
 
-  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+  app.listen(port, () => console.log(`simpleticket-cash-server listening on port ${port}!`))
 
   console.log("LISTEN");
   return app;

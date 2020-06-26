@@ -1,6 +1,5 @@
 {
   "restURL": "https://rest.bitcoin.com/v2/",
-  "lang": "english",
   "ticket": {
     "name": "Bitcoin cash test conference",
     "symbol": null,
