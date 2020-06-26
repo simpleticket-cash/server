@@ -19,6 +19,19 @@ function listen(wallet) {
     res.render('index', { ticket: ticket })
   });
 
+  app.get('/admin', (req, res) => {
+    res.render('admin', { ticket: ticket })
+  });
+
+  app.get('/cashid/request', (req, res) => {
+    res.json({"request": "cashid:apud.serveousercontent.com/cashid/auth?x=123"});
+  });
+
+  app.post('/cashid/auth', (req, res) => {
+    console.log("REQ: ", req);
+    res.json({"status": 0});
+  });
+
   app.post('/register', (req, res) => {
     console.log("REQ :%j", req.body);
     const { slpReceiveAddress } = req.body;

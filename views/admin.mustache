@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://developer.bitcoin.com/badger/badgerButton-1.0.1.js"></script>
+</head>
+<body>
+  <p>You need to login</p>
+  <p>
+    <button id="badger-button">
+      Login
+    </button>
+  </p>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=Array.from%2CPromise%2CSymbol%2CObject.setPrototypeOf%2CObject.getOwnPropertySymbols"></script>
+  <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+
+    <script>
+      if (typeof web4bch === 'undefined' || typeof web4bch.bch === 'undefined') {
+          alert('Please install Badger wallet first');
+          window.open('https://badger.bitcoin.com/', '_blank');
+          return;
+      }
+
+      if (typeof web4bch.bch.defaultAccount === 'undefined') {
+          alert('Please unlock your Badger wallet');
+          return;
+      }
+
+      var badgerButton = document.getElementById("badger-button")
+
+      console.log("HEI");
+
+      if (typeof web4bch !== 'undefined') {
+        web4bch = new Web4Bch(web4bch.currentProvider);
+
+        var cashIdRequest = 'cashid:https://apud.serveousercontent.com/cashid/auth/?x=123'
+
+        web4bch.bch.sign(web4bch.bch.defaultAccount, cashIdRequest, function(err) {
+          if (err) return
+
+          console.log('CashID auth success')
+        })
+      }
+    </script>
+
+</body>
+</html>
