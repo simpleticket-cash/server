@@ -1,5 +1,7 @@
 const mnemonic = require('../mnemonic');
 const createWallet = require('../create-wallet');
+const createTicket = require('../create-ticket');
+
 const waitForFunds = require('./wait-for-funds');
 
 describe('Integrating with the testnet', function() {
@@ -19,7 +21,9 @@ describe('Integrating with the testnet', function() {
   });
 
   it('should create a ticket', function() {
+    this.timeout(10000);
 
+    createTicket(wallet, {name: 'Integration test ticket', price: '1.0 USD'});
   });
 
   it('should send 1 ticket', () => {

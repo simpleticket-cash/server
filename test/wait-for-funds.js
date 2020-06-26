@@ -22,11 +22,12 @@ async function getBalance(wallet) {
     }
 
     function balanceGreaterThanZero() {
+      console.log("balance?")
       return SLP.Address.details(wallet.cashAddress)
         .then(details => (details.balance + details.unconfirmedBalance) > 0);
     }
 
-    return pWaitFor(balanceGreaterThanZero, {interval: 10000})
+    return pWaitFor(balanceGreaterThanZero, {interval: 2000})
       .then(() => wallet);
   } catch (err) {
     console.error(`Error in getBalance: `, err)

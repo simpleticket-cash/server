@@ -2,11 +2,10 @@
 
 const SLPSDK = require("slp-sdk");
 
+const documentUri = require('./document-uri');
 const { restURL } = require("./config");
 
 const SLP = new SLPSDK({ restURL });
-
-const documentUri = "https://simpleticket.cash/v1";
 
 async function createTicket(wallet, ticket) {
   try {
@@ -40,7 +39,7 @@ async function createTicket(wallet, ticket) {
       bchChangeReceiverAddress,
       decimals: 0,
       name: ticket.name,
-      documentUri: documentUri + "?price=" + ticket.price,
+      documentUri: documentUri(ticket),
       documentHash: null,
       initialTokenQty: ticket.initialTokenQty
     }
