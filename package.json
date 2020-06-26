@@ -4,7 +4,7 @@
   "description": "Server side for ordering tickets",
   "main": "index.js",
   "scripts": {
-    "test": "echo no tests yet",
+    "test": "cross-env NETWORK=testnet mocha",
     "start": "node index.js"
   },
   "keywords": [
@@ -26,5 +26,9 @@
     "p-wait-for": "^3.1.0",
     "qrcode-terminal": "^0.12.0",
     "slp-sdk": "^4.15.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "mocha": "^8.0.1"
   }
 }

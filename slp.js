@@ -2,7 +2,7 @@
 
 const SLPSDK = require("slp-sdk");
 
-const { restURL } = require("./config");
+const { restURL } = require('./config');
 
 const SLP = new SLPSDK({ restURL });
 
@@ -21,7 +21,7 @@ async function list(wallet) {
 
   const slpAddress = SLP.HDNode.toSLPAddress(change)
 
-  const tokens = await SLP.Utils.balancesForAddress(slpAddress);
+  const tokens = await SLP.Utils.balancesForAddress(wallet.slpAddress);
 
   return tokens;
 }

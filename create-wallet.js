@@ -1,42 +1,38 @@
 const SLPSDK = require("slp-sdk");
 
-const { restURL } = require("./config");
+const { network, restURL } = require("./config");
 
 const SLP = new SLPSDK({ restURL });
 
-async function createWallet(mnemonic) {
-  return Promise.resolve()
-    .then(generate);
+function createWallet(mnemonic) {
+  const wallet = {}
 
-  function generate() {
-    const wallet = {}
+  console.log("BIP44 $BCH Wallet")
+  console.log(`Mnemonic: `, mnemonic)
+  wallet.mnemonic = mnemonic
 
-    console.log("BIP44 $BCH Wallet")
-    console.log(`Mnemonic: `, mnemonic)
-    wallet.mnemonic = mnemonic
+  const rootSeed = SLP.Mnemonic.toSeed(mnemonic)
 
-    const rootSeed = SLP.Mnemonic.toSeed(mnemonic)
-    const masterHDNode = SLP.HDNode.fromSeed(rootSeed)
+  const masterHDNode = SLP.HDNode.fromSeed(rootSeed, network);
 
-    // HDNode of BIP44 account
-    const account = SLP.HDNode.derivePath(masterHDNode, "m/44'/145'/0'")
-    console.log(`BIP44 Account: "m/44'/145'/0'"`)
+  // HDNode of BIP44 account
+  const account = SLP.HDNode.derivePath(masterHDNode, "m/44'/145'/0'")
+  console.log(`BIP44 Account: "m/44'/145'/0'"`)
 
-    const i = 0;
-    const childNode = masterHDNode.derivePath(`m/44'/145'/0'/0/${i}`)
-    console.log(`m/44'/145'/0'/0/${i}: ${SLP.HDNode.toCashAddress(childNode)}`)
+  const i = 0;
+  const childNode = masterHDNode.derivePath(`m/44'/145'/0'/0/${i}`)
+  console.log(`m/44'/145'/0'/0/${i}: ${SLP.HDNode.toCashAddress(childNode)}`)
 
-    wallet.cashAddress = SLP.HDNode.toCashAddress(childNode)
-    wallet.slpAddress = SLP.Address.toSLPAddress(wallet.cashAddress)
+  wallet.cashAddress = SLP.HDNode.toCashAddress(childNode)
+  wallet.slpAddress = SLP.Address.toSLPAddress(wallet.cashAddress)
 
-    // derive the first external change address HDNode which is going to spend utxo
-    const change = SLP.HDNode.derivePath(account, "0/0")
+  // derive the first external change address HDNode which is going to spend utxo
+  const change = SLP.HDNode.derivePath(account, "0/0")
 
-    // get the cash address
-    SLP.HDNode.toCashAddress(change)
+  // get the cash address
+  SLP.HDNode.toCashAddress(change)
 
-    return wallet;
-  }
+  return wallet;
 }
 
 module.exports = createWallet;

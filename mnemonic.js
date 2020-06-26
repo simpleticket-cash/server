@@ -1,5 +1,11 @@
 "use strict"
 
+const SLPSDK = require("slp-sdk");
+
+const { restURL } = require('./config');
+
+const SLP = new SLPSDK({ restURL });
+
 function mnemonic() {
   function generate() {
     console.log("WARN: System environment variable `MNEMONIC` not set, generating...");
