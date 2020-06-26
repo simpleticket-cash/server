@@ -13,7 +13,7 @@ function listen(wallet) {
   app.set('view engine', 'mustache');
   app.engine('mustache', mustacheExpress());
 
-  const port = 3000;
+  const port = process.env.PORT || 3000;
 
   app.get('/', (req, res) => {
     res.render('index', { ticket: ticket })
