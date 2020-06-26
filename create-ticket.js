@@ -1,9 +1,8 @@
 "use strict";
 
 const SLPSDK = require("slp-sdk");
-const qrcode = require('qrcode-terminal');
 
-const { restURL, ticket } = require("./config");
+const { restURL } = require("./config");
 
 const SLP = new SLPSDK({ restURL });
 
@@ -11,7 +10,7 @@ const documentUri = "https://simpleticket.cash/v1";
 
 async function createTicket(wallet, ticket) {
   try {
-    const mnemonic = wallet.mnemonic
+    const mnemonic = wallet.mnemonic;
 
     // root seed buffer
     const rootSeed = SLP.Mnemonic.toSeed(mnemonic)
@@ -41,8 +40,8 @@ async function createTicket(wallet, ticket) {
       bchChangeReceiverAddress,
       decimals: 0,
       name: ticket.name,
-      documentUri: documentUri,
-      documentHash: ticket.documentHash,
+      documentUri: documentUri + "?price=" + ticket.price,
+      documentHash: null,
       initialTokenQty: ticket.initialTokenQty
     }
 
