@@ -15,7 +15,7 @@ describe('Integrating with the testnet', function() {
   });
 
   it('should wait for funds', function() {
-    this.timeout(0);
+    this.timeout(60000);
 
     return waitForFunds(wallet);
   });

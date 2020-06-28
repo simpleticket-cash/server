@@ -4,7 +4,7 @@ const base = "https://simpleticket.cash/v1";
 
 function documentUri(ticket) {
   if(!ticket.price) {
-    throw new Error("Missing property price");
+    throw Error("Missing property price");
   }
 
   const uri = new URL(base);
